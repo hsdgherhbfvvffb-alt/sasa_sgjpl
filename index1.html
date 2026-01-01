@@ -1,0 +1,2799 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👑 خدمات السوشيال ميديا - كامل</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            --gradient-secondary: linear-gradient(135deg, #f59e0b, #fbbf24);
+            --gradient-success: linear-gradient(135deg, #10b981, #34d399);
+            --gradient-danger: linear-gradient(135deg, #ef4444, #f87171);
+            --gradient-info: linear-gradient(135deg, #3b82f6, #60a5fa);
+        }
+        
+        * {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ====== تصميم البطاقات ====== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        /* ====== الأزرار ====== */
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(109, 40, 217, 0.3);
+            color: white;
+        }
+        
+        .btn-success {
+            background: var(--gradient-success);
+            border: none;
+        }
+        
+        .btn-warning {
+            background: var(--gradient-secondary);
+            border: none;
+        }
+        
+        .btn-danger {
+            background: var(--gradient-danger);
+            border: none;
+        }
+        
+        .btn-info {
+            background: var(--gradient-info);
+            border: none;
+        }
+        
+        /* ====== رأس الصفحة ====== */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* ====== القائمة العلوية ====== */
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: rgba(109, 40, 217, 0.1);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        /* ====== إشعارات ====== */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            animation: slideInRight 0.3s ease;
+            border-right: 4px solid var(--success);
+            max-width: 400px;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.error { border-color: var(--danger); }
+        .notification.warning { border-color: var(--secondary); }
+        .notification.info { border-color: var(--primary); }
+        
+        /* ====== خدمة العملاء ====== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* ====== إحصائيات ====== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .stat-card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-card h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        /* ====== الخدمات ====== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin: -35px auto 20px;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.3);
+        }
+        
+        /* ====== الجداول ====== */
+        .table-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        .table {
+            margin: 0;
+            width: 100%;
+            min-width: 600px;
+        }
+        
+        .table thead th {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .table tbody td {
+            padding: 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        
+        /* ====== البادجات ====== */
+        .badge {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            border: none;
+        }
+        
+        .badge-primary { background: var(--gradient); }
+        .badge-success { background: var(--gradient-success); }
+        .badge-warning { background: var(--gradient-secondary); }
+        .badge-danger { background: var(--gradient-danger); }
+        .badge-info { background: var(--gradient-info); }
+        
+        /* ====== النماذج ====== */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-control {
+            border-radius: 15px;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+            background: white;
+        }
+        
+        /* ====== زر العودة ====== */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--gradient);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* ====== الرسائل ====== */
+        .message-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .message-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* ====== القوائم المنسدلة ====== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            z-index: 100;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .dropdown-item {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(109, 40, 217, 0.1);
+            color: var(--primary);
+        }
+        
+        /* ====== تصميم الهاتف ====== */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-menu {
+                justify-content: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-card {
+                padding: 20px;
+            }
+            
+            .back-btn {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .whatsapp-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- زر الواتساب -->
+    <a href="https://wa.me/201019096774" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- الإشعارات -->
+    <div class="notification" id="notification"></div>
+
+    <!-- ====== صفحة تسجيل الدخول ====== -->
+    <div class="page active" id="loginPage">
+        <div class="container">
+            <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="col-md-6 col-lg-5">
+                    <div class="glass-card">
+                        <div class="text-center mb-5">
+                            <h1 class="logo mb-3">
+                                <i class="fas fa-rocket"></i> خدمات السوشيال ميديا
+                            </h1>
+                            <p class="text-muted">سجل دخولك للوصول إلى عالم الخدمات</p>
+                        </div>
+                        
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-user text-primary"></i>
+                                    اسم المستخدم
+                                </label>
+                                <input type="text" class="form-control" id="loginUsername" 
+                                       placeholder="أدخل اسم المستخدم" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-lock text-primary"></i>
+                                    كلمة المرور
+                                </label>
+                                <input type="password" class="form-control" id="loginPassword" 
+                                       placeholder="أدخل كلمة المرور" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-3 mb-3">
+                                <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                            </button>
+                            
+                            <!-- زر إنشاء حساب جديد -->
+                            <button type="button" class="btn btn-success w-100 py-3" onclick="showPage('registerPage')">
+                                <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إنشاء حساب جديد ====== -->
+    <div class="page" id="registerPage">
+        <div class="back-btn" onclick="showPage('loginPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="col-md-6 col-lg-5">
+                    <div class="glass-card">
+                        <div class="text-center mb-5">
+                            <h1 class="logo mb-3">
+                                <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                            </h1>
+                            <p class="text-muted">انضم إلى مجتمعنا واحصل على أفضل الخدمات</p>
+                        </div>
+                        
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-user text-primary"></i>
+                                    اسم المستخدم
+                                </label>
+                                <input type="text" class="form-control" id="regUsername" 
+                                       placeholder="اختر اسم مستخدم مميز" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                    البريد الإلكتروني
+                                </label>
+                                <input type="email" class="form-control" id="regEmail" 
+                                       placeholder="example@email.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-lock text-primary"></i>
+                                    كلمة المرور
+                                </label>
+                                <input type="password" class="form-control" id="regPassword" 
+                                       placeholder="كلمة مرور قوية" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-lock text-primary"></i>
+                                    تأكيد كلمة المرور
+                                </label>
+                                <input type="password" class="form-control" id="regConfirmPassword" 
+                                       placeholder="أعد إدخال كلمة المرور" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-3 mb-3">
+                                <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                            </button>
+                            
+                            <button type="button" class="btn btn-secondary w-100 py-3" onclick="showPage('loginPage')">
+                                <i class="fas fa-arrow-right"></i> العودة لتسجيل الدخول
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== لوحة التحكم ====== -->
+    <div class="page" id="dashboardPage">
+        <div class="back-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+        
+        <div class="container">
+            <!-- الرأس -->
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    خدمات السوشيال ميديا
+                </div>
+                
+                <div class="nav-menu">
+                    <button class="nav-btn active" onclick="showPage('dashboardPage')">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </button>
+                    
+                    <div class="dropdown">
+                        <button class="nav-btn" onclick="toggleDropdown('settingsDropdown')">
+                            <i class="fas fa-cog"></i> الإعدادات
+                        </button>
+                        <div class="dropdown-menu" id="settingsDropdown">
+                            <a class="dropdown-item" href="#" onclick="showPage('addFundsPage')">
+                                <i class="fas fa-money-bill-wave"></i> إضافة أموال
+                            </a>
+                            <a class="dropdown-item" href="#" onclick="showPage('myOrdersPage')">
+                                <i class="fas fa-clipboard-list"></i> طلباتي
+                            </a>
+                            <a class="dropdown-item" href="#" onclick="showPage('apiPage')">
+                                <i class="fas fa-code"></i> إعدادات API
+                            </a>
+                            <a class="dropdown-item" href="#" onclick="showPage('mailPage')">
+                                <i class="fas fa-envelope"></i> البريد
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <button class="nav-btn" onclick="showPage('servicesPage')">
+                        <i class="fas fa-shopping-cart"></i> الخدمات
+                    </button>
+                    
+                    <button class="nav-btn btn-warning" id="adminBtn" style="display: none;" 
+                            onclick="showAdminLogin()">
+                        <i class="fas fa-crown"></i> لوحة التحكم
+                    </button>
+                </div>
+                
+                <div class="user-info">
+                    <span id="currentUser" class="fw-bold text-primary"></span>
+                    <span class="badge badge-primary ms-2">
+                        <i class="fas fa-wallet"></i> <span id="userBalance">0.00</span> ج.م
+                    </span>
+                </div>
+            </div>
+            
+            <!-- الإحصائيات -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3 id="balanceStat">0.00</h3>
+                    <p>رصيدك الحالي</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3 id="activeOrders">0</h3>
+                    <p>طلبات نشطة</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <h3 id="servicesCount">0</h3>
+                    <p>خدمات متاحة</p>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7</h3>
+                    <p>دعم فني</p>
+                </div>
+            </div>
+            
+            <!-- الطلبات النشطة -->
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0">
+                        <i class="fas fa-clock text-warning"></i>
+                        الطلبات النشطة
+                    </h4>
+                    <button class="btn btn-primary" onclick="showPage('myOrdersPage')">
+                        <i class="fas fa-eye"></i> عرض الكل
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>الخدمة</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activeOrdersTable">
+                            <!-- سيتم تعبئتها بالطلبات -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- الخدمات المميزة -->
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0">
+                        <i class="fas fa-fire text-danger"></i>
+                        الخدمات المميزة
+                    </h4>
+                    <button class="btn btn-warning" onclick="showPage('servicesPage')">
+                        <i class="fas fa-shopping-cart"></i> عرض جميع الخدمات
+                    </button>
+                </div>
+                
+                <div class="services-grid" id="featuredServices">
+                    <!-- سيتم تعبئتها بالخدمات -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إضافة الأموال ====== -->
+    <div class="page" id="addFundsPage">
+        <div class="back-btn" onclick="showPage('dashboardPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h3 class="mb-4 text-center">
+                    <i class="fas fa-money-bill-wave text-success"></i>
+                    إضافة أموال إلى حسابك
+                </h3>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-info-circle"></i>
+                                    تعليمات الإضافة
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info mb-3">
+                                    <h6><i class="fas fa-list-ol"></i> خطوات الإضافة:</h6>
+                                    <ol class="mb-0">
+                                        <li class="mb-2">قم بتحويل المبلغ إلى رقم الفودافون كاش</li>
+                                        <li class="mb-2">انسخ الرقم الموجود على اليمين</li>
+                                        <li class="mb-2">أدخل معلومات التحويل في النموذج</li>
+                                        <li>انتظر مراجعة الطلب (10 دقائق كحد أقصى)</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="border rounded p-4 text-center mt-3">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-credit-card"></i>
+                                        رقم الفودافون كاش
+                                    </h5>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control text-center fw-bold fs-4" 
+                                               value="01019096774" id="phoneNumber" readonly>
+                                        <button class="btn btn-primary" type="button" 
+                                                onclick="copyToClipboard('01019096774')">
+                                            <i class="fas fa-copy"></i> نسخ الرقم
+                                        </button>
+                                    </div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        تأكد من صحة الرقم قبل التحويل
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-credit-card"></i>
+                                    نموذج طلب الإضافة
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="fundRequestForm">
+                                    <div class="form-group">
+                                        <label class="form-label fw-bold">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            الرقم الذي حولت منه
+                                        </label>
+                                        <input type="text" class="form-control" 
+                                               id="fundPhone" 
+                                               placeholder="مثال: 01012345678" 
+                                               pattern="01[0-9]{9}"
+                                               required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label fw-bold">
+                                            <i class="fas fa-pound-sign"></i>
+                                            المبلغ المدفوع (جنيه مصري)
+                                        </label>
+                                        <input type="number" class="form-control" 
+                                               id="fundAmount" 
+                                               min="10" step="0.01" 
+                                               placeholder="مثال: 100.50" 
+                                               required>
+                                    </div>
+                                    
+                                    <div class="alert alert-warning">
+                                        <h6 class="fw-bold">
+                                            <i class="fas fa-clock"></i>
+                                            مدة المراجعة:
+                                        </h6>
+                                        <p class="mb-0">
+                                            يتم مراجعة طلبات الإضافة خلال 10 دقائق كحد أقصى
+                                        </p>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-success w-100 py-3 fw-bold">
+                                        <i class="fas fa-paper-plane"></i>
+                                        تقديم طلب الإضافة
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة طلباتي ====== -->
+    <div class="page" id="myOrdersPage">
+        <div class="back-btn" onclick="showPage('dashboardPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-clipboard-list text-primary"></i>
+                        طلباتي
+                    </h3>
+                    <span class="badge badge-primary">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="totalOrders">0</span> طلبات
+                    </span>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>الخدمة</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- سيتم تعبئتها بالطلبات -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إعدادات API ====== -->
+    <div class="page" id="apiPage">
+        <div class="back-btn" onclick="showPage('dashboardPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-code text-success"></i>
+                        إعدادات API
+                    </h3>
+                    <span class="badge badge-warning">
+                        <i class="fas fa-wallet"></i> <span id="apiBalance">0.00</span> ج.م
+                    </span>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="border rounded p-4 mb-4" style="background: #1f2937; color: white;">
+                            <h5 class="mb-3">
+                                <i class="fas fa-key text-warning"></i>
+                                API Key الخاص بك
+                            </h5>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control bg-transparent text-white border-0" 
+                                       value="إنشاء API Key أولاً" id="apiKey" readonly>
+                                <button class="btn btn-warning" onclick="copyApiKey()">
+                                    <i class="fas fa-copy"></i> نسخ
+                                </button>
+                            </div>
+                            <small class="text-light opacity-75">
+                                <i class="fas fa-shield-alt"></i>
+                                لا تشارك هذا المفتاح مع أي شخص
+                            </small>
+                        </div>
+                        
+                        <div class="card border-0 mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-sync-alt"></i>
+                                    إنشاء API Key جديد
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button type="button" class="btn btn-danger w-100 py-3" onclick="generateApiKey()">
+                                    <i class="fas fa-key"></i>
+                                    إنشاء مفتاح جديد
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card border-0">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-book"></i>
+                                    طريقة استخدام API
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="mb-3">رابط API:</h6>
+                                <div class="border rounded p-3 mb-4 bg-light">
+                                    <code>POST /api/order</code>
+                                </div>
+                                
+                                <h6 class="mb-3">بيانات الطلب (JSON):</h6>
+                                <div class="border rounded p-3 bg-light">
+                                    <pre class="mb-0"><code id="apiExampleCode"></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="mb-3">
+                    <i class="fas fa-list-alt text-primary"></i>
+                    قائمة الخدمات المتاحة
+                </h4>
+                
+                <div class="row" id="apiServicesList">
+                    <!-- سيتم تعبئتها بالخدمات -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة البريد ====== -->
+    <div class="page" id="mailPage">
+        <div class="back-btn" onclick="showPage('dashboardPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-envelope text-primary"></i>
+                        البريد الوارد
+                    </h3>
+                    <span class="badge badge-primary">
+                        <i class="fas fa-inbox"></i>
+                        <span id="mailCount">0</span> رسائل
+                    </span>
+                </div>
+                
+                <div id="mailList">
+                    <!-- سيتم تعبئتها بالرسائل -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة الخدمات ====== -->
+    <div class="page" id="servicesPage">
+        <div class="back-btn" onclick="showPage('dashboardPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                <h1 class="mb-0">
+                    <i class="fas fa-shopping-cart text-primary"></i> الخدمات المتاحة
+                </h1>
+                <span class="badge badge-warning">
+                    <i class="fas fa-wallet"></i> رصيدك: <span id="servicesBalance">0.00</span> ج.م
+                </span>
+            </div>
+            
+            <div class="row" id="servicesList">
+                <!-- سيتم تعبئتها بالخدمات -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة لوحة تحكم المسؤول ====== -->
+    <div class="page" id="adminPage">
+        <div class="back-btn" onclick="showPage('dashboardPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-primary">
+                    <i class="fas fa-crown"></i>
+                    لوحة تحكم المسؤول
+                </h2>
+                
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-plus-circle"></i>
+                                    إضافة خدمة
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-primary w-100" onclick="showPage('addServicePage')">
+                                    <i class="fas fa-plus"></i> إضافة خدمة جديدة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-cog"></i>
+                                    إدارة الخدمات
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-success w-100" onclick="showPage('manageServicesPage')">
+                                    <i class="fas fa-edit"></i> إدارة الخدمات
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-trash"></i>
+                                    حذف خدمة
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-danger w-100" onclick="showPage('deleteServicePage')">
+                                    <i class="fas fa-trash"></i> حذف خدمة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-warning text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-money-check-alt"></i>
+                                    طلبات الأموال
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-warning w-100" onclick="showPage('fundRequestsPage')">
+                                    <i class="fas fa-money-bill-wave"></i> طلبات الأموال
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-envelope"></i>
+                                    إرسال رسالة جماعية
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-info w-100" onclick="showPage('sendMessagePage')">
+                                    <i class="fas fa-paper-plane"></i> إرسال رسالة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-users"></i>
+                                    إدارة المستخدمين
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-secondary w-100" onclick="showPage('manageUsersPage')">
+                                    <i class="fas fa-user-cog"></i> إدارة المستخدمين
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إضافة خدمة (المسؤول) ====== -->
+    <div class="page" id="addServicePage">
+        <div class="back-btn" onclick="showPage('adminPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-primary">
+                    <i class="fas fa-plus-circle"></i>
+                    إضافة خدمة جديدة
+                </h2>
+                
+                <form id="addServiceForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-heading"></i>
+                                اسم الخدمة
+                            </label>
+                            <input type="text" class="form-control" id="serviceName" 
+                                   placeholder="مثال: متابعين انستجرام" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-id-card"></i>
+                                Service ID
+                            </label>
+                            <input type="text" class="form-control" id="serviceId" 
+                                   placeholder="مثال: instagram-followers" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-align-left"></i>
+                            وصف الخدمة
+                        </label>
+                        <textarea class="form-control" id="serviceDescription" 
+                                  rows="3" placeholder="وصف مفصل للخدمة..." required></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-tag"></i>
+                                السعر لكل 1000 (جنيه)
+                            </label>
+                            <input type="number" class="form-control" id="servicePrice" 
+                                   step="0.01" placeholder="مثال: 50.00" required>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-arrow-down"></i>
+                                الحد الأدنى
+                            </label>
+                            <input type="number" class="form-control" id="serviceMin" 
+                                   placeholder="مثال: 100" required>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-arrow-up"></i>
+                                الحد الأقصى
+                            </label>
+                            <input type="number" class="form-control" id="serviceMax" 
+                                   placeholder="مثال: 10000" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-link"></i>
+                                API URL (اختياري)
+                            </label>
+                            <input type="text" class="form-control" id="serviceApiUrl" 
+                                   placeholder="https://api.example.com/order">
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-key"></i>
+                                API Key (اختياري)
+                            </label>
+                            <input type="text" class="form-control" id="serviceApiKey" 
+                                   value="670e8d4e3148d4677bac2bae0cc905a3" 
+                                   placeholder="API Key الخارجي">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
+                        <i class="fas fa-save"></i>
+                        إضافة الخدمة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إدارة الخدمات ====== -->
+    <div class="page" id="manageServicesPage">
+        <div class="back-btn" onclick="showPage('adminPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-primary">
+                    <i class="fas fa-cog"></i>
+                    إدارة الخدمات
+                </h2>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>اسم الخدمة</th>
+                                <th>Service ID</th>
+                                <th>السعر/1000</th>
+                                <th>الحد الأدنى</th>
+                                <th>الحد الأقصى</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="servicesManagementTable">
+                            <!-- سيتم تعبئتها بالخدمات -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة حذف خدمة ====== -->
+    <div class="page" id="deleteServicePage">
+        <div class="back-btn" onclick="showPage('adminPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-danger">
+                    <i class="fas fa-trash"></i>
+                    حذف خدمة
+                </h2>
+                
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-list"></i>
+                                اختر الخدمة لحذفها
+                            </label>
+                            <select class="form-control" id="serviceToDelete" onchange="updateDeleteInfo()">
+                                <option value="">-- اختر الخدمة --</option>
+                            </select>
+                        </div>
+                        
+                        <div id="deleteServiceInfo" class="alert alert-info" style="display: none;">
+                            <!-- معلومات الخدمة -->
+                        </div>
+                        
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            ⚠️ تحذير: هذا الإجراء لا يمكن التراجع عنه!
+                        </div>
+                        
+                        <button type="button" class="btn btn-danger w-100 py-3" onclick="deleteService()">
+                            <i class="fas fa-trash"></i>
+                            حذف الخدمة المحددة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة طلبات الأموال ====== -->
+    <div class="page" id="fundRequestsPage">
+        <div class="back-btn" onclick="showPage('adminPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-warning">
+                    <i class="fas fa-money-check-alt"></i>
+                    طلبات إضافة الأموال
+                </h2>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>المستخدم</th>
+                                <th>رقم الهاتف</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fundRequestsTable">
+                            <!-- سيتم تعبئتها بطلبات الأموال -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إرسال رسالة جماعية ====== -->
+    <div class="page" id="sendMessagePage">
+        <div class="back-btn" onclick="showPage('adminPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-info">
+                    <i class="fas fa-paper-plane"></i>
+                    إرسال رسالة جماعية
+                </h2>
+                
+                <form id="sendMessageForm">
+                    <div class="form-group">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-heading"></i>
+                            عنوان الرسالة
+                        </label>
+                        <input type="text" class="form-control" id="messageTitle" 
+                               placeholder="مثال: عرض خاص" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-align-left"></i>
+                            نص الرسالة
+                        </label>
+                        <textarea class="form-control" id="messageContent" 
+                                  rows="5" placeholder="اكتب نص الرسالة هنا..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-users"></i>
+                            المستلمون
+                        </label>
+                        <select class="form-control" id="messageReceivers" multiple>
+                            <option value="all">جميع المستخدمين</option>
+                        </select>
+                        <small class="text-muted">اضغط Ctrl لاختيار أكثر من مستخدم</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-info w-100 py-3 fw-bold">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== صفحة إدارة المستخدمين ====== -->
+    <div class="page" id="manageUsersPage">
+        <div class="back-btn" onclick="showPage('adminPage')">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="mb-4 text-center text-secondary">
+                    <i class="fas fa-users"></i>
+                    إدارة المستخدمين
+                </h2>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>اسم المستخدم</th>
+                                <th>البريد الإلكتروني</th>
+                                <th>الرصيد</th>
+                                <th>تاريخ التسجيل</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <!-- سيتم تعبئتها بالمستخدمين -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== نموذج تسجيل دخول المسؤول ====== -->
+    <div id="adminLoginModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 30px; border-radius: 20px; max-width: 400px; width: 90%;">
+            <div class="text-center mb-4">
+                <i class="fas fa-crown fa-3x text-warning mb-3"></i>
+                <h4 class="text-primary">تسجيل دخول المسؤول</h4>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">كلمة مرور المسؤول</label>
+                <input type="password" class="form-control" id="adminPassword" 
+                       placeholder="أدخل كلمة المرور">
+            </div>
+            
+            <div class="d-flex gap-3 mt-4">
+                <button type="button" class="btn btn-secondary w-50" onclick="hideAdminLogin()">
+                    إلغاء
+                </button>
+                <button type="button" class="btn btn-warning w-50" onclick="adminLogin()">
+                    <i class="fas fa-sign-in-alt"></i> دخول
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // البيانات المخزنة محلياً
+        const localStorageKey = 'socialMediaDB_v3';
+        let currentUser = null;
+        let isAdmin = false;
+        
+        // تهيئة البيانات
+        function initData() {
+            if (!localStorage.getItem(localStorageKey)) {
+                const defaultData = {
+                    users: [
+                        {
+                            id: 1,
+                            username: 'admin',
+                            password: '0100883717500',
+                            email: 'admin@socialservices.com',
+                            balance: 10000,
+                            api_key: 'admin_' + Math.random().toString(36).substr(2, 16),
+                            created_at: new Date().toISOString()
+                        },
+                        {
+                            id: 2,
+                            username: 'ahmed',
+                            password: '123456',
+                            email: 'ahmed@test.com',
+                            balance: 500,
+                            api_key: 'user_' + Math.random().toString(36).substr(2, 16),
+                            created_at: new Date().toISOString()
+                        }
+                    ],
+                    services: [
+                        {
+                            id: 1,
+                            service_id: 'instagram-followers',
+                            name: 'متابعين انستجرام',
+                            description: 'متابعين حقيقيين وذات جودة عالية مع ضمان لمدة 30 يوم',
+                            price_per_1000: 50,
+                            min_quantity: 100,
+                            max_quantity: 50000,
+                            api_url: 'https://api.smm.com/order',
+                            api_key: '670e8d4e3148d4677bac2bae0cc905a3',
+                            is_active: true,
+                            created_at: new Date().toISOString()
+                        },
+                        {
+                            id: 2,
+                            service_id: 'instagram-likes',
+                            name: 'لايكات انستجرام',
+                            description: 'لايكات سريعة وانسيابية على جميع المنشورات',
+                            price_per_1000: 30,
+                            min_quantity: 100,
+                            max_quantity: 100000,
+                            api_url: 'https://api.smm.com/order',
+                            api_key: '670e8d4e3148d4677bac2bae0cc905a3',
+                            is_active: true,
+                            created_at: new Date().toISOString()
+                        },
+                        {
+                            id: 3,
+                            service_id: 'youtube-views',
+                            name: 'مشاهدات يوتيوب',
+                            description: 'مشاهدات عالية الجودة تضمن ظهور الفيديو في التوصيات',
+                            price_per_1000: 40,
+                            min_quantity: 500,
+                            max_quantity: 1000000,
+                            api_url: 'https://api.smm.com/order',
+                            api_key: '670e8d4e3148d4677bac2bae0cc905a3',
+                            is_active: true,
+                            created_at: new Date().toISOString()
+                        }
+                    ],
+                    orders: [
+                        {
+                            id: 1,
+                            order_id: 'ORD' + Math.random().toString(36).substr(2, 6).toUpperCase(),
+                            user_id: 2,
+                            service_id: 1,
+                            quantity: 1000,
+                            total_price: 50,
+                            link: 'https://instagram.com/test',
+                            status: 'processing',
+                            created_at: new Date().toISOString()
+                        }
+                    ],
+                    fund_requests: [
+                        {
+                            id: 1,
+                            request_id: 'FUND' + Math.random().toString(36).substr(2, 6).toUpperCase(),
+                            user_id: 2,
+                            phone_number: '01012345678',
+                            amount: 100,
+                            status: 'pending',
+                            created_at: new Date().toISOString()
+                        }
+                    ],
+                    messages: [
+                        {
+                            id: 1,
+                            title: 'مرحباً بك',
+                            content: 'تم إنشاء حسابك بنجاح. يمكنك الآن البدء في استخدام خدماتنا.',
+                            sender_id: 1,
+                            receiver_ids: [2],
+                            created_at: new Date().toISOString(),
+                            is_read: false
+                        }
+                    ]
+                };
+                localStorage.setItem(localStorageKey, JSON.stringify(defaultData));
+            }
+            return JSON.parse(localStorage.getItem(localStorageKey));
+        }
+        
+        // حفظ البيانات
+        function saveData(data) {
+            localStorage.setItem(localStorageKey, JSON.stringify(data));
+        }
+        
+        // تحميل البيانات
+        function loadData() {
+            return JSON.parse(localStorage.getItem(localStorageKey));
+        }
+        
+        // عرض الصفحة
+        function showPage(pageId) {
+            $('.page').removeClass('active');
+            $('#' + pageId).addClass('active');
+            updateUI();
+            
+            // تحديث الصفحات الخاصة
+            if (pageId === 'fundRequestsPage') {
+                updateFundRequests();
+            } else if (pageId === 'manageServicesPage') {
+                updateServicesManagement();
+            } else if (pageId === 'deleteServicePage') {
+                updateDeleteServicePage();
+            } else if (pageId === 'sendMessagePage') {
+                updateMessagePage();
+            } else if (pageId === 'manageUsersPage') {
+                updateUsersPage();
+            }
+        }
+        
+        // تسجيل الدخول
+        $('#loginForm').submit(function(e) {
+            e.preventDefault();
+            const username = $('#loginUsername').val();
+            const password = $('#loginPassword').val();
+            
+            const data = loadData();
+            const user = data.users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                isAdmin = username === 'admin';
+                
+                // تخزين في sessionStorage
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                sessionStorage.setItem('isAdmin', isAdmin);
+                
+                showNotification('تم تسجيل الدخول بنجاح!', 'success');
+                showPage('dashboardPage');
+            } else {
+                showNotification('اسم المستخدم أو كلمة المرور غير صحيحة', 'error');
+            }
+        });
+        
+        // إنشاء حساب جديد
+        $('#registerForm').submit(function(e) {
+            e.preventDefault();
+            
+            const username = $('#regUsername').val();
+            const email = $('#regEmail').val();
+            const password = $('#regPassword').val();
+            const confirmPassword = $('#regConfirmPassword').val();
+            
+            // التحقق من كلمات المرور
+            if (password !== confirmPassword) {
+                showNotification('كلمتا المرور غير متطابقتين', 'error');
+                return;
+            }
+            
+            // التحقق من طول كلمة المرور
+            if (password.length < 6) {
+                showNotification('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                return;
+            }
+            
+            // التحقق من صحة البريد الإلكتروني
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('البريد الإلكتروني غير صالح', 'error');
+                return;
+            }
+            
+            const data = loadData();
+            
+            // التحقق من عدم وجود مستخدم بنفس الاسم
+            if (data.users.some(u => u.username === username)) {
+                showNotification('اسم المستخدم موجود بالفعل', 'error');
+                return;
+            }
+            
+            // التحقق من عدم وجود بريد بنفس العنوان
+            if (data.users.some(u => u.email === email)) {
+                showNotification('البريد الإلكتروني موجود بالفعل', 'error');
+                return;
+            }
+            
+            // إنشاء مستخدم جديد
+            const newUser = {
+                id: data.users.length + 1,
+                username: username,
+                password: password,
+                email: email,
+                balance: 0,
+                api_key: 'user_' + Math.random().toString(36).substr(2, 16),
+                created_at: new Date().toISOString()
+            };
+            
+            data.users.push(newUser);
+            saveData(data);
+            
+            // تسجيل دخول تلقائي للمستخدم الجديد
+            currentUser = newUser;
+            isAdmin = false;
+            
+            sessionStorage.setItem('currentUser', JSON.stringify(newUser));
+            sessionStorage.setItem('isAdmin', false);
+            
+            // إرسال رسالة ترحيبية
+            const welcomeMessage = {
+                id: data.messages.length + 1,
+                title: 'مرحباً بك في خدمات السوشيال ميديا',
+                content: 'تم إنشاء حسابك بنجاح. يمكنك الآن البدء في استخدام خدماتنا والحصول على أفضل العروض.',
+                sender_id: 1, // المسؤول
+                receiver_ids: [newUser.id],
+                created_at: new Date().toISOString(),
+                is_read: false
+            };
+            data.messages.push(welcomeMessage);
+            saveData(data);
+            
+            showNotification('تم إنشاء حسابك بنجاح! مرحباً بك', 'success');
+            showPage('dashboardPage');
+            
+            // تفريغ النموذج
+            $('#regUsername').val('');
+            $('#regEmail').val('');
+            $('#regPassword').val('');
+            $('#regConfirmPassword').val('');
+        });
+        
+        // تحديث واجهة المستخدم
+        function updateUI() {
+            if (currentUser) {
+                $('#currentUser').text(currentUser.username);
+                $('.user-info').show();
+                
+                if (isAdmin) {
+                    $('#adminBtn').show();
+                } else {
+                    $('#adminBtn').hide();
+                }
+                
+                // تحديث الرصيد
+                const data = loadData();
+                const user = data.users.find(u => u.id === currentUser.id);
+                if (user) {
+                    $('#userBalance').text(user.balance.toFixed(2));
+                    $('#balanceStat').text(user.balance.toFixed(2));
+                    $('#apiBalance').text(user.balance.toFixed(2));
+                    $('#servicesBalance').text(user.balance.toFixed(2));
+                }
+                
+                // تحديث الطلبات النشطة
+                updateActiveOrders();
+                
+                // تحديث الخدمات المميزة
+                updateFeaturedServices();
+                
+                // تحديث جميع الخدمات
+                updateAllServices();
+                
+                // تحديث API
+                updateApiSettings();
+                
+                // تحديث البريد
+                updateMail();
+            } else {
+                $('.user-info').hide();
+                $('#adminBtn').hide();
+            }
+        }
+        
+        // تحديث الطلبات النشطة
+        function updateActiveOrders() {
+            const data = loadData();
+            const userOrders = data.orders.filter(o => o.user_id === currentUser.id && 
+                (o.status === 'pending' || o.status === 'processing'));
+            
+            $('#activeOrders').text(userOrders.length);
+            $('#totalOrders').text(data.orders.filter(o => o.user_id === currentUser.id).length);
+            
+            let ordersHtml = '';
+            if (userOrders.length > 0) {
+                userOrders.slice(0, 5).forEach(order => {
+                    const service = data.services.find(s => s.id === order.service_id);
+                    ordersHtml += `
+                        <tr>
+                            <td><span class="badge badge-dark">#${order.order_id}</span></td>
+                            <td>${service ? service.name : 'غير معروف'}</td>
+                            <td>${order.quantity.toLocaleString()}</td>
+                            <td><strong class="text-success">${order.total_price.toFixed(2)} ج.م</strong></td>
+                            <td>${getStatusBadge(order.status)}</td>
+                            <td>${formatDate(order.created_at)}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                ordersHtml = `
+                    <tr>
+                        <td colspan="6" class="text-center py-5">
+                            <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">لا توجد طلبات نشطة حالياً</h5>
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            $('#activeOrdersTable').html(ordersHtml);
+            
+            // تحديث جدول الطلبات الكامل
+            updateOrdersTable();
+        }
+        
+        // تحديث جدول الطلبات الكامل
+        function updateOrdersTable() {
+            const data = loadData();
+            const userOrders = data.orders.filter(o => o.user_id === currentUser.id);
+            
+            let ordersHtml = '';
+            if (userOrders.length > 0) {
+                userOrders.forEach(order => {
+                    const service = data.services.find(s => s.id === order.service_id);
+                    ordersHtml += `
+                        <tr>
+                            <td><span class="badge badge-dark">#${order.order_id}</span></td>
+                            <td>${service ? service.name : 'غير معروف'}</td>
+                            <td>${order.quantity.toLocaleString()}</td>
+                            <td><strong class="text-success">${order.total_price.toFixed(2)} ج.م</strong></td>
+                            <td>${getStatusBadge(order.status)}</td>
+                            <td>${formatDate(order.created_at)}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                ordersHtml = `
+                    <tr>
+                        <td colspan="6" class="text-center py-5">
+                            <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">لا توجد طلبات حتى الآن</h5>
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            $('#ordersTableBody').html(ordersHtml);
+        }
+        
+        // تحديث الخدمات المميزة
+        function updateFeaturedServices() {
+            const data = loadData();
+            const activeServices = data.services.filter(s => s.is_active);
+            
+            $('#servicesCount').text(activeServices.length);
+            
+            let servicesHtml = '';
+            activeServices.slice(0, 3).forEach(service => {
+                const icon = getServiceIcon(service.name);
+                servicesHtml += `
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="${icon}"></i>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h5 class="card-title fw-bold">${service.name}</h5>
+                            <p class="card-text text-muted small">${service.description.substring(0, 60)}...</p>
+                            <div class="price-tag mb-3">
+                                <span class="badge badge-primary">${service.price_per_1000} ج.م / 1000</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="showPage('servicesPage')">
+                                <i class="fas fa-shopping-cart"></i> طلب الخدمة
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            $('#featuredServices').html(servicesHtml);
+        }
+        
+        // تحديث جميع الخدمات
+        function updateAllServices() {
+            const data = loadData();
+            const activeServices = data.services.filter(s => s.is_active);
+            
+            let servicesHtml = '';
+            activeServices.forEach(service => {
+                const icon = getServiceIcon(service.name);
+                servicesHtml += `
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="${icon}"></i>
+                            </div>
+                            <div class="card-body text-center pt-0">
+                                <h4 class="card-title fw-bold">${service.name}</h4>
+                                <p class="card-text text-muted mb-3">${service.description}</p>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="bg-light rounded-3 p-2">
+                                            <small class="text-muted d-block">الحد الأدنى</small>
+                                            <strong class="text-primary">${service.min_quantity.toLocaleString()}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bg-light rounded-3 p-2">
+                                            <small class="text-muted d-block">الحد الأقصى</small>
+                                            <strong class="text-primary">${service.max_quantity.toLocaleString()}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-tag mb-4">
+                                    <span class="badge badge-primary">
+                                        <i class="fas fa-tag"></i> ${service.price_per_1000} ج.م لكل 1000
+                                    </span>
+                                </div>
+                                
+                                <div class="buy-service-form" data-service-id="${service.id}" data-price="${service.price_per_1000}">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label fw-bold">الكمية المطلوبة</label>
+                                        <input type="number" class="form-control text-center quantity-input" 
+                                               min="${service.min_quantity}"
+                                               max="${service.max_quantity}"
+                                               value="${service.min_quantity}">
+                                    </div>
+                                    
+                                    <div class="form-group mb-3">
+                                        <label class="form-label fw-bold">السعر الإجمالي</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-primary text-white">ج.م</span>
+                                            <input type="text" class="form-control text-center fw-bold fs-5 text-success price-display" 
+                                                   value="${((service.min_quantity / 1000) * service.price_per_1000).toFixed(2)}"
+                                                   readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mb-3">
+                                        <label class="form-label fw-bold">الرابط</label>
+                                        <input type="url" class="form-control text-center link-input" 
+                                               placeholder="https://example.com" required>
+                                    </div>
+                                    
+                                    <button type="button" class="btn btn-primary w-100 btn-lg buy-btn">
+                                        <i class="fas fa-shopping-cart"></i> شراء الخدمة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            $('#servicesList').html(servicesHtml);
+            
+            // إضافة event listeners للخدمات
+            $('.quantity-input').on('input', function() {
+                const form = $(this).closest('.buy-service-form');
+                const serviceId = form.data('service-id');
+                const pricePer1000 = form.data('price');
+                const quantity = parseInt($(this).val()) || 0;
+                const totalPrice = (quantity / 1000) * pricePer1000;
+                form.find('.price-display').val(totalPrice.toFixed(2));
+            });
+            
+            $('.buy-btn').on('click', function() {
+                const form = $(this).closest('.buy-service-form');
+                const serviceId = form.data('service-id');
+                const quantity = parseInt(form.find('.quantity-input').val()) || 0;
+                const link = form.find('.link-input').val();
+                buyService(serviceId, quantity, link);
+            });
+        }
+        
+        // تحديث إعدادات API
+        function updateApiSettings() {
+            const data = loadData();
+            const user = data.users.find(u => u.id === currentUser.id);
+            
+            if (user && user.api_key) {
+                $('#apiKey').val(user.api_key);
+                
+                $('#apiExampleCode').text(`{
+    "api_key": "${user.api_key}",
+    "service_id": "instagram-followers",
+    "quantity": 1000,
+    "link": "https://example.com"
+}`);
+                
+                // تحديث قائمة خدمات API
+                let apiServicesHtml = '';
+                data.services.filter(s => s.is_active).forEach(service => {
+                    apiServicesHtml += `
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-hashtag text-primary"></i>
+                                        ${service.name}
+                                    </h5>
+                                    <p class="card-text text-muted small mb-3">${service.description}</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">Service ID</small>
+                                            <code class="text-primary fw-bold">${service.service_id}</code>
+                                        </div>
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">السعر</small>
+                                            <span class="fw-bold text-success">${service.price_per_1000} ج.م / 1000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                $('#apiServicesList').html(apiServicesHtml);
+            }
+        }
+        
+        // تحديث البريد
+        function updateMail() {
+            const data = loadData();
+            const userMessages = data.messages.filter(m => 
+                m.receiver_ids.includes('all') || m.receiver_ids.includes(currentUser.id)
+            );
+            
+            $('#mailCount').text(userMessages.length);
+            
+            let mailHtml = '';
+            if (userMessages.length > 0) {
+                userMessages.forEach(message => {
+                    const sender = data.users.find(u => u.id === message.sender_id);
+                    mailHtml += `
+                        <div class="message-item">
+                            <div class="d-flex align-items-start">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                                     style="width: 50px; height: 50px; margin-left: 15px;">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="fw-bold mb-0">
+                                            ${message.title}
+                                        </h6>
+                                        <span class="text-muted">${formatDate(message.created_at)}</span>
+                                    </div>
+                                    <p class="text-muted mb-2">${message.content}</p>
+                                    <small class="text-primary">
+                                        من: ${sender ? sender.username : 'المسؤول'}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                mailHtml = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-envelope fa-4x text-muted mb-3"></i>
+                        <h5 class="text-muted">لا توجد رسائل</h5>
+                    </div>
+                `;
+            }
+            
+            $('#mailList').html(mailHtml);
+        }
+        
+        // تحديث طلبات الأموال (للمسؤول)
+        function updateFundRequests() {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            const pendingRequests = data.fund_requests.filter(r => r.status === 'pending');
+            
+            let requestsHtml = '';
+            if (pendingRequests.length > 0) {
+                pendingRequests.forEach(request => {
+                    const user = data.users.find(u => u.id === request.user_id);
+                    requestsHtml += `
+                        <tr>
+                            <td><span class="badge badge-dark">#${request.request_id}</span></td>
+                            <td>${user ? user.username : 'غير معروف'}</td>
+                            <td>${request.phone_number}</td>
+                            <td><strong class="text-success">${request.amount.toFixed(2)} ج.م</strong></td>
+                            <td><span class="badge badge-warning">قيد الانتظار</span></td>
+                            <td>${formatDate(request.created_at)}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm me-2" onclick="approveFundRequest(${request.id})">
+                                    <i class="fas fa-check"></i> قبول
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="rejectFundRequest(${request.id})">
+                                    <i class="fas fa-times"></i> رفض
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else {
+                requestsHtml = `
+                    <tr>
+                        <td colspan="7" class="text-center py-5">
+                            <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+                            <h5 class="text-muted">لا توجد طلبات معلقة</h5>
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            $('#fundRequestsTable').html(requestsHtml);
+        }
+        
+        // قبول طلب أموال
+        function approveFundRequest(requestId) {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            const request = data.fund_requests.find(r => r.id === requestId);
+            
+            if (request) {
+                const user = data.users.find(u => u.id === request.user_id);
+                if (user) {
+                    // إضافة المبلغ للرصيد
+                    user.balance += request.amount;
+                    request.status = 'approved';
+                    saveData(data);
+                    
+                    // إرسال رسالة للمستخدم
+                    const newMessage = {
+                        id: data.messages.length + 1,
+                        title: 'تمت الموافقة على طلب الإضافة',
+                        content: `تمت الموافقة على طلب إضافة الأموال رقم ${request.request_id} وتم إضافة ${request.amount} ج.م إلى رصيدك.`,
+                        sender_id: currentUser.id,
+                        receiver_ids: [user.id],
+                        created_at: new Date().toISOString(),
+                        is_read: false
+                    };
+                    data.messages.push(newMessage);
+                    saveData(data);
+                    
+                    showNotification('تمت الموافقة على الطلب وإضافة الأموال', 'success');
+                    updateFundRequests();
+                }
+            }
+        }
+        
+        // رفض طلب أموال
+        function rejectFundRequest(requestId) {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            const request = data.fund_requests.find(r => r.id === requestId);
+            
+            if (request) {
+                const user = data.users.find(u => u.id === request.user_id);
+                request.status = 'rejected';
+                saveData(data);
+                
+                if (user) {
+                    // إرسال رسالة للمستخدم
+                    const newMessage = {
+                        id: data.messages.length + 1,
+                        title: 'تم رفض طلب الإضافة',
+                        content: `تم رفض طلب إضافة الأموال رقم ${request.request_id}. يرجى التحقق من المعلومات وإعادة المحاولة.`,
+                        sender_id: currentUser.id,
+                        receiver_ids: [user.id],
+                        created_at: new Date().toISOString(),
+                        is_read: false
+                    };
+                    data.messages.push(newMessage);
+                    saveData(data);
+                }
+                
+                showNotification('تم رفض الطلب', 'success');
+                updateFundRequests();
+            }
+        }
+        
+        // تحديث إدارة الخدمات
+        function updateServicesManagement() {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            
+            let servicesHtml = '';
+            data.services.forEach(service => {
+                servicesHtml += `
+                    <tr>
+                        <td>${service.id}</td>
+                        <td><strong>${service.name}</strong></td>
+                        <td><code>${service.service_id}</code></td>
+                        <td>${service.price_per_1000} ج.م</td>
+                        <td>${service.min_quantity}</td>
+                        <td>${service.max_quantity}</td>
+                        <td>
+                            ${service.is_active ? 
+                                '<span class="badge badge-success">نشط</span>' : 
+                                '<span class="badge badge-danger">معطل</span>'
+                            }
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm me-2" onclick="toggleServiceStatus(${service.id})">
+                                <i class="fas fa-power-off"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteServiceById(${service.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            $('#servicesManagementTable').html(servicesHtml);
+        }
+        
+        // تبديل حالة الخدمة
+        function toggleServiceStatus(serviceId) {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            const service = data.services.find(s => s.id === serviceId);
+            
+            if (service) {
+                service.is_active = !service.is_active;
+                saveData(data);
+                updateServicesManagement();
+                showNotification(`تم ${service.is_active ? 'تفعيل' : 'تعطيل'} الخدمة`, 'success');
+            }
+        }
+        
+        // حذف خدمة مباشرة
+        function deleteServiceById(serviceId) {
+            if (!isAdmin) return;
+            
+            if (confirm('هل أنت متأكد من حذف هذه الخدمة؟')) {
+                const data = loadData();
+                const serviceIndex = data.services.findIndex(s => s.id === serviceId);
+                
+                if (serviceIndex !== -1) {
+                    data.services.splice(serviceIndex, 1);
+                    saveData(data);
+                    updateServicesManagement();
+                    updateDeleteServicePage();
+                    showNotification('تم حذف الخدمة بنجاح', 'success');
+                }
+            }
+        }
+        
+        // تحديث صفحة حذف الخدمة
+        function updateDeleteServicePage() {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            const select = $('#serviceToDelete');
+            select.empty();
+            select.append('<option value="">-- اختر الخدمة --</option>');
+            
+            data.services.forEach(service => {
+                select.append(`<option value="${service.id}">${service.id} - ${service.name}</option>`);
+            });
+        }
+        
+        // تحديث معلومات الحذف
+        function updateDeleteInfo() {
+            const serviceId = $('#serviceToDelete').val();
+            if (!serviceId) {
+                $('#deleteServiceInfo').hide();
+                return;
+            }
+            
+            const data = loadData();
+            const service = data.services.find(s => s.id == serviceId);
+            
+            if (service) {
+                $('#deleteServiceInfo').html(`
+                    <h6>معلومات الخدمة:</h6>
+                    <p><strong>الاسم:</strong> ${service.name}</p>
+                    <p><strong>Service ID:</strong> ${service.service_id}</p>
+                    <p><strong>السعر:</strong> ${service.price_per_1000} ج.م لكل 1000</p>
+                    <p><strong>الحالة:</strong> ${service.is_active ? 'نشط' : 'معطل'}</p>
+                `).show();
+            }
+        }
+        
+        // حذف الخدمة
+        function deleteService() {
+            const serviceId = $('#serviceToDelete').val();
+            if (!serviceId) {
+                showNotification('يرجى اختيار خدمة للحذف', 'error');
+                return;
+            }
+            
+            if (!confirm('هل أنت متأكد من حذف هذه الخدمة؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+                return;
+            }
+            
+            deleteServiceById(parseInt(serviceId));
+            $('#serviceToDelete').val('');
+            $('#deleteServiceInfo').hide();
+        }
+        
+        // تحديث صفحة الرسائل
+        function updateMessagePage() {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            const select = $('#messageReceivers');
+            select.empty();
+            select.append('<option value="all">جميع المستخدمين</option>');
+            
+            data.users.forEach(user => {
+                if (user.id !== currentUser.id) { // لا تظهر المستخدم الحالي
+                    select.append(`<option value="${user.id}">${user.username} (${user.email})</option>`);
+                }
+            });
+        }
+        
+        // إرسال رسالة جماعية
+        $('#sendMessageForm').submit(function(e) {
+            e.preventDefault();
+            
+            if (!isAdmin) return;
+            
+            const title = $('#messageTitle').val();
+            const content = $('#messageContent').val();
+            const receivers = $('#messageReceivers').val();
+            
+            if (!title || !content) {
+                showNotification('يرجى ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            const data = loadData();
+            let receiverIds = [];
+            
+            if (receivers.includes('all')) {
+                // إرسال لجميع المستخدمين عدا المسؤول
+                receiverIds = data.users.filter(u => u.id !== currentUser.id).map(u => u.id);
+            } else {
+                receiverIds = receivers.map(id => parseInt(id));
+            }
+            
+            const newMessage = {
+                id: data.messages.length + 1,
+                title: title,
+                content: content,
+                sender_id: currentUser.id,
+                receiver_ids: receiverIds,
+                created_at: new Date().toISOString(),
+                is_read: false
+            };
+            
+            data.messages.push(newMessage);
+            saveData(data);
+            
+            showNotification(`تم إرسال الرسالة إلى ${receiverIds.length} مستخدم`, 'success');
+            $('#messageTitle').val('');
+            $('#messageContent').val('');
+            $('#messageReceivers').val(['all']);
+        });
+        
+        // تحديث صفحة المستخدمين
+        function updateUsersPage() {
+            if (!isAdmin) return;
+            
+            const data = loadData();
+            
+            let usersHtml = '';
+            data.users.forEach(user => {
+                usersHtml += `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td><strong>${user.username}</strong></td>
+                        <td>${user.email}</td>
+                        <td><strong class="text-success">${user.balance.toFixed(2)} ج.م</strong></td>
+                        <td>${formatDate(user.created_at)}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm me-2" onclick="editUserBalance(${user.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            ${user.id !== currentUser.id ? 
+                                `<button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>` : 
+                                ''
+                            }
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            $('#usersTable').html(usersHtml);
+        }
+        
+        // تعديل رصيد مستخدم
+        function editUserBalance(userId) {
+            if (!isAdmin) return;
+            
+            const newBalance = prompt('أدخل الرصيد الجديد:', '');
+            if (newBalance === null) return;
+            
+            const balance = parseFloat(newBalance);
+            if (isNaN(balance) || balance < 0) {
+                showNotification('يرجى إدخال رقم صحيح', 'error');
+                return;
+            }
+            
+            const data = loadData();
+            const user = data.users.find(u => u.id === userId);
+            
+            if (user) {
+                user.balance = balance;
+                saveData(data);
+                updateUsersPage();
+                showNotification('تم تحديث الرصيد بنجاح', 'success');
+            }
+        }
+        
+        // حذف مستخدم
+        function deleteUser(userId) {
+            if (!isAdmin) return;
+            
+            if (userId === currentUser.id) {
+                showNotification('لا يمكن حذف حسابك الخاص', 'error');
+                return;
+            }
+            
+            if (!confirm('هل أنت متأكد من حذف هذا المستخدم؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+                return;
+            }
+            
+            const data = loadData();
+            const userIndex = data.users.findIndex(u => u.id === userId);
+            
+            if (userIndex !== -1) {
+                data.users.splice(userIndex, 1);
+                saveData(data);
+                updateUsersPage();
+                showNotification('تم حذف المستخدم بنجاح', 'success');
+            }
+        }
+        
+        // شراء خدمة
+        function buyService(serviceId, quantity, link) {
+            if (!currentUser) return;
+            
+            const data = loadData();
+            const service = data.services.find(s => s.id == serviceId);
+            const user = data.users.find(u => u.id === currentUser.id);
+            
+            if (!service || !user) {
+                showNotification('خطأ في البيانات', 'error');
+                return;
+            }
+            
+            if (quantity < service.min_quantity || quantity > service.max_quantity) {
+                showNotification(`الكمية يجب أن تكون بين ${service.min_quantity} و ${service.max_quantity}`, 'error');
+                return;
+            }
+            
+            if (!link || !link.startsWith('http')) {
+                showNotification('يرجى إدخال رابط صحيح', 'error');
+                return;
+            }
+            
+            const totalPrice = (quantity / 1000) * service.price_per_1000;
+            
+            if (user.balance < totalPrice) {
+                showNotification('رصيدك غير كافٍ لإتمام هذه العملية', 'error');
+                return;
+            }
+            
+            // خصم المبلغ
+            user.balance -= totalPrice;
+            
+            // إنشاء الطلب
+            const newOrder = {
+                id: data.orders.length + 1,
+                order_id: 'ORD' + Math.random().toString(36).substr(2, 6).toUpperCase(),
+                user_id: user.id,
+                service_id: service.id,
+                quantity: quantity,
+                total_price: totalPrice,
+                link: link,
+                status: 'processing',
+                created_at: new Date().toISOString()
+            };
+            
+            data.orders.push(newOrder);
+            saveData(data);
+            
+            // تحديث المستخدم الحالي
+            currentUser = user;
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            
+            showNotification(`تم إنشاء طلبك بنجاح! رقم الطلب: ${newOrder.order_id}`, 'success');
+            updateUI();
+            showPage('dashboardPage');
+        }
+        
+        // إضافة أموال
+        $('#fundRequestForm').submit(function(e) {
+            e.preventDefault();
+            
+            const phone = $('#fundPhone').val();
+            const amount = parseFloat($('#fundAmount').val());
+            
+            if (!phone || phone.length !== 11 || !phone.startsWith('01')) {
+                showNotification('يرجى إدخال رقم هاتف مصري صحيح', 'error');
+                return;
+            }
+            
+            if (!amount || amount < 10) {
+                showNotification('الحد الأدنى للإضافة هو 10 جنيه', 'error');
+                return;
+            }
+            
+            const data = loadData();
+            const newRequest = {
+                id: data.fund_requests.length + 1,
+                request_id: 'FUND' + Math.random().toString(36).substr(2, 6).toUpperCase(),
+                user_id: currentUser.id,
+                phone_number: phone,
+                amount: amount,
+                status: 'pending',
+                created_at: new Date().toISOString()
+            };
+            
+            data.fund_requests.push(newRequest);
+            saveData(data);
+            
+            showNotification(`تم إنشاء طلب الإضافة بنجاح! رقم الطلب: ${newRequest.request_id}. سيتم المراجعة خلال 10 دقائق`, 'success');
+            showPage('dashboardPage');
+        });
+        
+        // إنشاء API Key جديد
+        function generateApiKey() {
+            const data = loadData();
+            const user = data.users.find(u => u.id === currentUser.id);
+            
+            if (user) {
+                user.api_key = 'user_' + Math.random().toString(36).substr(2, 16);
+                saveData(data);
+                
+                // تحديث المستخدم الحالي
+                currentUser = user;
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                
+                showNotification('تم إنشاء API Key جديد بنجاح', 'success');
+                updateApiSettings();
+            }
+        }
+        
+        // نسخ API Key
+        function copyApiKey() {
+            const apiKey = $('#apiKey').val();
+            if (apiKey && apiKey !== 'إنشاء API Key أولاً') {
+                navigator.clipboard.writeText(apiKey).then(function() {
+                    showNotification('تم نسخ API Key بنجاح', 'success');
+                });
+            } else {
+                showNotification('ليس هناك API Key للنسخ', 'error');
+            }
+        }
+        
+        // إضافة خدمة جديدة (للمسؤول)
+        $('#addServiceForm').submit(function(e) {
+            e.preventDefault();
+            
+            if (!isAdmin) {
+                showNotification('ليس لديك صلاحية الوصول', 'error');
+                return;
+            }
+            
+            const serviceName = $('#serviceName').val();
+            const serviceId = $('#serviceId').val();
+            const description = $('#serviceDescription').val();
+            const price = parseFloat($('#servicePrice').val());
+            const min = parseInt($('#serviceMin').val());
+            const max = parseInt($('#serviceMax').val());
+            const apiUrl = $('#serviceApiUrl').val();
+            const apiKey = $('#serviceApiKey').val() || '670e8d4e3148d4677bac2bae0cc905a3';
+            
+            if (!serviceName || !serviceId || !description || !price || !min || !max) {
+                showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                return;
+            }
+            
+            if (min <= 0 || max <= 0 || min > max) {
+                showNotification('قيم الحد الأدنى والأقصى غير صحيحة', 'error');
+                return;
+            }
+            
+            if (price <= 0) {
+                showNotification('السعر يجب أن يكون أكبر من صفر', 'error');
+                return;
+            }
+            
+            const data = loadData();
+            
+            // التحقق من عدم وجود service_id مكرر
+            if (data.services.some(s => s.service_id === serviceId)) {
+                showNotification('Service ID موجود بالفعل', 'error');
+                return;
+            }
+            
+            const newService = {
+                id: data.services.length + 1,
+                service_id: serviceId,
+                name: serviceName,
+                description: description,
+                price_per_1000: price,
+                min_quantity: min,
+                max_quantity: max,
+                api_url: apiUrl,
+                api_key: apiKey,
+                is_active: true,
+                created_at: new Date().toISOString()
+            };
+            
+            data.services.push(newService);
+            saveData(data);
+            
+            showNotification('تمت إضافة الخدمة بنجاح', 'success');
+            showPage('adminPage');
+            
+            // تفريغ النموذج
+            $('#serviceName').val('');
+            $('#serviceId').val('');
+            $('#serviceDescription').val('');
+            $('#servicePrice').val('');
+            $('#serviceMin').val('');
+            $('#serviceMax').val('');
+            $('#serviceApiUrl').val('');
+            $('#serviceApiKey').val('670e8d4e3148d4677bac2bae0cc905a3');
+        });
+        
+        // عرض تسجيل دخول المسؤول
+        function showAdminLogin() {
+            if (isAdmin) {
+                showPage('adminPage');
+            } else {
+                $('#adminLoginModal').show();
+            }
+        }
+        
+        // إخفاء تسجيل دخول المسؤول
+        function hideAdminLogin() {
+            $('#adminLoginModal').hide();
+        }
+        
+        // تسجيل دخول المسؤول
+        function adminLogin() {
+            const password = $('#adminPassword').val();
+            
+            if (password === '0100883717500') {
+                isAdmin = true;
+                sessionStorage.setItem('isAdmin', true);
+                hideAdminLogin();
+                showPage('adminPage');
+                showNotification('تم تسجيل الدخول كمسؤول', 'success');
+            } else {
+                showNotification('كلمة المرور غير صحيحة', 'error');
+            }
+        }
+        
+        // تسجيل الخروج
+        function logout() {
+            currentUser = null;
+            isAdmin = false;
+            sessionStorage.clear();
+            showPage('loginPage');
+        }
+        
+        // نسخ النص
+        function copyToClipboard(text) {
+            if (!text) {
+                showNotification('ليس هناك نص للنسخ', 'warning');
+                return;
+            }
+            
+            navigator.clipboard.writeText(text).then(function() {
+                showNotification('تم النسخ بنجاح', 'success');
+            });
+        }
+        
+        // تبديل القوائم المنسدلة
+        function toggleDropdown(dropdownId) {
+            $('.dropdown-menu').hide();
+            $('#' + dropdownId).toggle();
+        }
+        
+        // إخفاء جميع القوائم المنسدلة
+        $(document).click(function(e) {
+            if (!$(e.target).closest('.dropdown').length) {
+                $('.dropdown-menu').hide();
+            }
+        });
+        
+        // الحصول على أيقونة الخدمة
+        function getServiceIcon(serviceName) {
+            if (serviceName.includes('انستجرام')) return 'fab fa-instagram';
+            if (serviceName.includes('فيسبوك')) return 'fab fa-facebook';
+            if (serviceName.includes('يوتيوب')) return 'fab fa-youtube';
+            if (serviceName.includes('تويتر')) return 'fab fa-twitter';
+            if (serviceName.includes('تيك توك')) return 'fab fa-tiktok';
+            return 'fas fa-hashtag';
+        }
+        
+        // الحصول على بادج الحالة
+        function getStatusBadge(status) {
+            switch(status) {
+                case 'pending': return '<span class="badge badge-warning"><i class="fas fa-clock"></i> قيد الانتظار</span>';
+                case 'processing': return '<span class="badge badge-info"><i class="fas fa-cog"></i> قيد التنفيذ</span>';
+                case 'completed': return '<span class="badge badge-success"><i class="fas fa-check"></i> مكتمل</span>';
+                case 'cancelled': return '<span class="badge badge-danger"><i class="fas fa-times"></i> ملغي</span>';
+                default: return '<span class="badge badge-secondary">غير معروف</span>';
+            }
+        }
+        
+        // تنسيق التاريخ
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // عرض الإشعارات
+        function showNotification(message, type = 'success') {
+            const notification = $('#notification');
+            notification.removeClass('error warning info success').addClass(type);
+            notification.html(`
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'} me-2"></i>
+                ${message}
+            `);
+            notification.fadeIn();
+            setTimeout(() => notification.fadeOut(), 3000);
+        }
+        
+        // عند تحميل الصفحة
+        $(document).ready(function() {
+            initData();
+            
+            // تحميل حالة المستخدم من sessionStorage
+            const savedUser = sessionStorage.getItem('currentUser');
+            const savedAdmin = sessionStorage.getItem('isAdmin');
+            
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                isAdmin = savedAdmin === 'true';
+                showPage('dashboardPage');
+            } else {
+                showPage('loginPage');
+            }
+            
+            // إخفاء القوائم المنسدلة عند النقر خارجها
+            $(document).click(function() {
+                $('.dropdown-menu').hide();
+            });
+            
+            // منع إغلاق القوائم عند النقر داخلها
+            $('.dropdown').click(function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
